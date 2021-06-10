@@ -12,5 +12,7 @@ struct Story {
     
     let title: String
     let choice1: String
+    let step1: Int
     let choice2: String
+    let step2: Int
 }

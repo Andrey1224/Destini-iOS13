@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var storyBrain = StoryBrain()
     
-    var storyNumber = 0
     
     
 
@@ -23,21 +23,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        storyLabel.text = storyArray[storyNumber].title
-        choice1Button.setTitle(storyArray[storyNumber].choice1, for: .normal)
-        choice2Button.setTitle(storyArray[storyNumber].choice2, for: .normal)
+        updateUI()
     }
 
     
-    let storyArray = [Story(title: "you se a fork in the road", choice1: "take a left", choice2: "take a right"),
-                      Story(title: "you see a tiger", choice1: "shout for help", choice2: "play dead"),
-                      Story(title: "you find a treasure chest", choice1: "Open it", choice2: "Check for traps")]
+    
     
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        storyBrain.nextStory(userChoice: sender.currentTitle!)
         
-        
-        
+        updateUI()
+    }
+    
+    func updateUI() {
+        storyLabel.text = storyBrain.storyArray[storyBrain.storyNumber].title
+        choice1Button.setTitle(storyBrain.storyArray[storyBrain.storyNumber].choice1, for: .normal)
+        choice2Button.setTitle(storyBrain.storyArray[storyBrain.storyNumber].choice2, for: .normal)
     }
     
 }
